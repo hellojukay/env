@@ -11,7 +11,7 @@ var (
 )
 
 func init() {
-	flag.BoolVar(&clean, "i", false, "the environment")
+	flag.BoolVar(&clean, "i", false, "clear the environment then run command")
 	flag.Parse()
 }
 
