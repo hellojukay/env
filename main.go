@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -17,30 +18,6 @@ func init() {
 	flag.Parse()
 }
 
-type Env map[string]string
-
-func GetEnv() *Env {
-	var e Env = make(map[string]string)
-	envs := os.Environ()
-	for _, item := range envs {
-		s := strings.Split(item, "=")
-		key := s[0]
-		value := strings.Join(s[1:], "=")
-		e[key] = value
-	}
-	return &e
-}
-func (e *Env) String() string {
-	var s string
-	for key, value := range *e {
-		s = s + key + "=" + value + "\n"
-	}
-	return strings.TrimRight(s, "\n")
-}
-
-func (e *Env) Remove(key string) {
-	delete(*e, key)
-}
 func main() {
 	e := GetEnv()
 	if len(os.Args) == 1 {
@@ -54,6 +31,14 @@ func main() {
 	}
 	for _, env := range unsets {
 		e.Remove(env)
+	}
+	r := regexp.MustCompile(`.+=.+`)
+	for _, arg := range os.Args {
+		if !r.Match([]byte(arg)) {
+			continue
+		}
+		arr := strings.Split(arg, "=")
+		e.Set(arr[0], arr[1])
 	}
 	Exec(*e, cmd)
 }
