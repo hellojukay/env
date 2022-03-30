@@ -21,7 +21,7 @@ func GetEnv() *Env {
 }
 func (e *Env) String() string {
 	var keys []string
-	for key, _ := range *e {
+	for key := range *e {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)
