@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -19,10 +20,17 @@ func GetEnv() *Env {
 	return &e
 }
 func (e *Env) String() string {
-	var s string
-	for key, value := range *e {
-		s = s + key + "=" + value + "\n"
+	var keys []string
+	for key, _ := range *e {
+		keys = append(keys, key)
 	}
+	sort.Strings(keys)
+
+	var s string
+	for _, key := range keys {
+		s = s + key + "=" + (*e)[key] + "\n"
+	}
+
 	return strings.TrimRight(s, "\n")
 }
 
