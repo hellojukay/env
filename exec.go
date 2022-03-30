@@ -8,6 +8,7 @@ import (
 
 func Exec(e Env, cmd string) error {
 	c := exec.Command(cmd)
+
 	c.Env = nil
 	var envs []string
 	for key, value := range e {
@@ -15,6 +16,7 @@ func Exec(e Env, cmd string) error {
 		envs = append(envs, env)
 	}
 	c.Env = envs
+
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
 	return c.Run()
