@@ -1,5 +1,5 @@
 # env
-
+一个 Windows, Darwin 版本的 env 命令。
 # Install
  ```
  go install github.com/hellojukay/env@latest
