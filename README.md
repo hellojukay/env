@@ -1,12 +1,9 @@
 # env
 
-```
-vagrant@archlinux env (main) $ ./env -h >> README.md
-Usage of ./env:
-  -i    clear the environment then run command:
-  -u value
-        remove variable from the environment and run a program:
-```
+# Install
+ ```
+ go install github.com/hellojukay/env@latest
+ ```
 
 # Use case
 
