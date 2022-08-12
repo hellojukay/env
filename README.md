@@ -1,5 +1,5 @@
 # env
-一个 Windows, Darwin 版本的 env 命令。
+一个 Windows, Darwin 版本的 env 命令，类似 [cross-env](https://github.com/kentcdodds/cross-env)。
 # Install
  ```
  go install github.com/hellojukay/env@latest
